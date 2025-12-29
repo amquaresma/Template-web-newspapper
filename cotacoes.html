@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotações - Oxente News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, var(--bege-claro) 100%);
+            line-height: 1.6;
+            color: var(--marrom-escuro);
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--laranja-queimado);
+        }
+        
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-item {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: var(--laranja-queimado);
+            color: white;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        
+        .page-title {
+            grid-column: 1 / -1;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+            border-radius: 2px;
+        }
+        
+        .trading-dashboard {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .converter-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--bege-claro);
+        }
+        
+        .converter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .currency-converter {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .currency-input-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bege-claro);
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .currency-input-group:focus-within {
+            border-color: var(--laranja-queimado);
+            box-shadow: 0 0 0 3px rgba(191, 119, 22, 0.1);
+        }
+        
+        .currency-select {
+            background: white;
+            border: 2px solid var(--laranja-queimado);
+            border-radius: 12px;
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--marrom-escuro);
+            min-width: 120px;
+            font-size: 1rem;
+        }
+        
+        .amount-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            outline: none;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .convert-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+        
+        .convert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .conversion-result {
+            background: linear-gradient(135deg, var(--amarelo-ocre), var(--bege-claro));
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .result-amount {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-rate {
+            font-size: 1rem;
+            color: var(--marrom-avermelhado);
+            font-weight: 500;
+        }
+        
+        .rates-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .rate-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+        }
+        
+        .rate-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .rate-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .currency-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .currency-flag {
+            font-size: 2rem;
+        }
+        
+        .currency-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.25rem;
+        }
+        
+        .currency-code {
+            font-size: 0.85rem;
+            color: var(--marrom-avermelhado);
+            font-weight: 500;
+        }
+        
+        .rate-value {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--laranja-queimado);
+        }
+        
+        .rate-change {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--bege-claro);
+        }
+        
+        .change-value {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+        
+        .crypto-section {
+            background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-avermelhado));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .crypto-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .crypto-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .crypto-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .crypto-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crypto-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crypto-price {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crypto-change {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .weather-card {
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .weather-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-icon {
+            font-size: 1.2rem;
+        }
+        
+        .city-selector {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .city-selector option {
+            background: var(--marrom-escuro);
+            color: white;
+        }
+        
+        .weather-time {
+            margin-bottom: 1rem;
+        }
+        
+        .date-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .weather-info {
+            text-align: center;
+        }
+        
+        .temp-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .temp-main span:first-child {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .weather-emoji {
+            font-size: 2rem;
+        }
+        
+        .weather-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .weather-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .weather-detail span:first-child {
+            opacity: 0.75;
+        }
+        
+        .weather-detail span:last-child {
+            font-weight: 600;
+        }
+        
+        .market-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .market-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bege-claro);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .market-name {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+        }
+        
+        .market-value {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            color: var(--laranja-queimado);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--amarelo-ocre);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--laranja-queimado), transparent);
+            margin: 2rem 0;
+        }
+        
+        .footer-credits {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+            
+            .crypto-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .currency-input-group {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-main">
+            <a href="index.html" class="logo">Oxente News</a>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-item">🏠 Home</a>
+                <a href="noticias.html" class="nav-item">📰 Notícias</a>
+                <a href="entertainment.html" class="nav-item">🎵 Entretenimento</a>
+                <a href="costumes.html" class="nav-item">🎭 Costumes</a>
+                <a href="cotacoes.html" class="nav-item active">📈 Cotações</a>
+                <a href="admin.html" class="nav-item">⚙️ Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <h1 class="page-title">💰 Cotações e Mercados Financeiros</h1>
+        
+        <!-- Main Content -->
+        <main>
+            <!-- Currency Converter -->
+            <div class="converter-card">
+                <h2 class="converter-title">Conversor de Moedas</h2>
+                <div class="currency-converter">
+                    <div class="currency-input-group">
+                        <select class="currency-select" id="from-currency">
+                            <option value="BRL">🇧🇷 Real (BRL)</option>
+                            <option value="USD">🇺🇸 Dólar (USD)</option>
+                            <option value="EUR">🇪🇺 Euro (EUR)</option>
+                            <option value="GBP">🇬🇧 Libra (GBP)</option>
+                            <option value="JPY">🇯🇵 Iene (JPY)</option>
+                            <option value="CAD">🇨🇦 Dólar Canadense</option>
+                            <option value="AUD">🇦🇺 Dólar Australiano</option>
+                            <option value="CHF">🇨🇭 Franco Suíço</option>
+                        </select>
+                        <input type="number" class="amount-input" id="from-amount" placeholder="0.00" value="1">
+                    </div>
+                    
+                    <button class="convert-btn" onclick="convertCurrency()">
+                        🔄 Converter
+                    </button>
+                    
+                    <div class="currency-input-group">
+                        <select class="currency-select" id="to-currency">
+                            <option value="USD">🇺🇸 Dólar (USD)</option>
+                            <option value="BRL">🇧🇷 Real (BRL)</option>
+                            <option value="EUR">🇪🇺 Euro (EUR)</option>
+                            <option value="GBP">🇬🇧 Libra (GBP)</option>
+                            <option value="JPY">🇯🇵 Iene (JPY)</option>
+                            <option value="CAD">🇨🇦 Dólar Canadense</option>
+                            <option value="AUD">🇦🇺 Dólar Australiano</option>
+                            <option value="CHF">🇨🇭 Franco Suíço</option>
+                        </select>
+                        <input type="text" class="amount-input" id="to-amount" placeholder="0.00" readonly>
+                    </div>
+                    
+                    <div class="conversion-result">
+                        <div class="result-amount" id="conversion-display">R$ 5.12</div>
+                        <div class="result-rate" id="conversion-rate">1 BRL = 0.195 USD</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exchange Rates -->
+            <div class="rates-grid">
+                <div class="rate-card">
+                    <div class="rate-header">
+                        <div class="currency-info">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-details">
+                                <h3>Dólar Americano</h3>
+                                <span class="currency-code">USD/BRL</span>
+                            </div>
+                        </div>
+                        <div class="rate-value" id="usd-rate">R$ 5.12</div>
+                    </div>
+                    <div class="rate-change">
+                        <span>Variação 24h:</span>
+                        <span class="change-value negative" id="usd-change">-0.8%</span>
+                    </div>
+                </div>
+
+                <div class="rate-card">
+                    <div class="rate-header">
+                        <div class="currency-info">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-details">
+                                <h3>Euro</h3>
+                                <span class="currency-code">EUR/BRL</span>
+                            </div>
+                        </div>
+                        <div class="rate-value" id="eur-rate">R$ 5.58</div>
+                    </div>
+                    <div class="rate-change">
+                        <span>Variação 24h:</span>
+                        <span class="change-value positive" id="eur-change">+0.3%</span>
+                    </div>
+                </div>
+
+                <div class="rate-card">
+                    <div class="rate-header">
+                        <div class="currency-info">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-details">
+                                <h3>Libra Esterlina</h3>
+                                <span class="currency-code">GBP/BRL</span>
+                            </div>
+                        </div>
+                        <div class="rate-value" id="gbp-rate">R$ 6.45</div>
+                    </div>
+                    <div class="rate-change">
+                        <span>Variação 24h:</span>
+                        <span class="change-value positive" id="gbp-change">+1.1%</span>
+                    </div>
+                </div>
+
+                <div class="rate-card">
+                    <div class="rate-header">
+                        <div class="currency-info">
+                            <span class="currency-flag">🇯🇵</span>
+                            <div class="currency-details">
+                                <h3>Iene Japonês</h3>
+                                <span class="currency-code">JPY/BRL</span>
+                            </div>
+                        </div>
+                        <div class="rate-value" id="jpy-rate">R$ 0.034</div>
+                    </div>
+                    <div class="rate-change">
+                        <span>Variação 24h:</span>
+                        <span class="change-value negative" id="jpy-change">-0.5%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cryptocurrency Section -->
+            <div class="crypto-section">
+                <h2 class="crypto-title">💎 Mercado de Criptomoedas</h2>
+                <div class="crypto-grid">
+                    <div class="crypto-card">
+                        <div class="crypto-icon">₿</div>
+                        <div class="crypto-name">Bitcoin</div>
+                        <div class="crypto-price" id="btc-price">$43.250</div>
+                        <div class="crypto-change positive" id="btc-change">+2.5%</div>
+                    </div>
+                    
+                    <div class="crypto-card">
+                        <div class="crypto-icon">Ξ</div>
+                        <div class="crypto-name">Ethereum</div>
+                        <div class="crypto-price" id="eth-price">$2.580</div>
+                        <div class="crypto-change positive" id="eth-change">+1.8%</div>
+                    </div>
+                    
+                    <div class="crypto-card">
+                        <div class="crypto-icon">🐕</div>
+                        <div class="crypto-name">Dogecoin</div>
+                        <div class="crypto-price" id="doge-price">$0.085</div>
+                        <div class="crypto-change negative" id="doge-change">-3.2%</div>
+                    </div>
+                    
+                    <div class="crypto-card">
+                        <div class="crypto-icon">⚡</div>
+                        <div class="crypto-name">Solana</div>
+                        <div class="crypto-price" id="sol-price">$98.40</div>
+                        <div class="crypto-change positive" id="sol-change">+4.7%</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Weather Card -->
+            <div class="weather-card">
+                <div class="weather-header">
+                    <span class="weather-icon">📍</span>
+                    <select id="city-selector" class="city-selector">
+                        <option value="recife">Recife, PE</option>
+                        <option value="salvador">Salvador, BA</option>
+                        <option value="fortaleza">Fortaleza, CE</option>
+                        <option value="joao-pessoa">João Pessoa, PB</option>
+                        <option value="natal">Natal, RN</option>
+                        <option value="maceio">Maceió, AL</option>
+                        <option value="aracaju">Aracaju, SE</option>
+                        <option value="teresina">Teresina, PI</option>
+                        <option value="sao-luis">São Luís, MA</option>
+                    </select>
+                </div>
+                
+                <div class="weather-time">
+                    <div class="date-time">
+                        <span class="date-icon">📅</span>
+                        <span id="current-date">25 de Junho, 2025</span>
+                    </div>
+                    <div class="date-time">
+                        <span class="time-icon">🕐</span>
+                        <span id="current-time">14:30</span>
+                    </div>
+                </div>
+                
+                <div class="weather-info">
+                    <div class="temp-main">
+                        <span id="temperature">28°C</span>
+                        <span class="weather-emoji" id="weather-emoji">☀️</span>
+                    </div>
+                    <div class="weather-desc" id="weather-desc">Ensolarado</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span>Umidade</span>
+                            <span id="humidity">65%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span>Vento</span>
+                            <span id="wind-speed">12 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Summary -->
+            <div class="market-summary">
+                <h3 class="market-title">📊 Resumo dos Mercados</h3>
+                <div class="market-item">
+                    <span class="market-name">IBOVESPA</span>
+                    <span class="market-value" id="ibovespa-sidebar">125.840</span>
+                </div>
+                <div class="market-item">
+                    <span class="market-name">S&P 500</span>
+                    <span class="market-value" id="sp500-sidebar">4.385</span>
+                </div>
+                <div class="market-item">
+                    <span class="market-name">NASDAQ</span>
+                    <span class="market-value" id="nasdaq-sidebar">13.620</span>
+                </div>
+                <div class="market-item">
+                    <span class="market-name">Petróleo Brent</span>
+                    <span class="market-value" id="oil-sidebar">$78.50</span>
+                </div>
+                <div class="market-item">
+                    <span class="market-name">Ouro</span>
+                    <span class="market-value" id="gold-sidebar">$1.985</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Oxente News</div>
+            <div class="footer-text">
+                O portal de notícias que celebra a cultura nordestina
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-credits">
+                © Desenvolvido pelo grupo Door Solutions<br>
+                Matheus Quaresma, Tales Jardim, Maria Arevalo, João V. Queiroz, Sophia Marques<br>
+                Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Currency conversion functionality
+        function convertCurrency() {
+            const fromCurrency = document.getElementById('from-currency').value;
+            const toCurrency = document.getElementById('to-currency').value;
+            const amount = parseFloat(document.getElementById('from-amount').value) || 0;
+            
+            // Simulate API call with mock exchange rates
+            const exchangeRates = {
+                'BRL': { 'USD': 0.195, 'EUR': 0.179, 'GBP': 0.155, 'JPY': 29.85 },
+                'USD': { 'BRL': 5.12, 'EUR': 0.92, 'GBP': 0.79, 'JPY': 153.2 },
+                'EUR': { 'BRL': 5.58, 'USD': 1.09, 'GBP': 0.86, 'JPY': 167.1 },
+                'GBP': { 'BRL': 6.45, 'USD': 1.26, 'EUR': 1.16, 'JPY': 193.8 }
+            };
+            
+            let convertedAmount = amount;
+            let rate = 1;
+            
+            if (fromCurrency !== toCurrency && exchangeRates[fromCurrency] && exchangeRates[fromCurrency][toCurrency]) {
+                rate = exchangeRates[fromCurrency][toCurrency];
+                convertedAmount = amount * rate;
+            }
+            
+            document.getElementById('to-amount').value = convertedAmount.toFixed(2);
+            document.getElementById('conversion-display').textContent = formatCurrency(convertedAmount, toCurrency);
+            document.getElementById('conversion-rate').textContent = `1 ${fromCurrency} = ${rate.toFixed(3)} ${toCurrency}`;
+        }
+        
+        function formatCurrency(amount, currency) {
+            const symbols = {
+                'BRL': 'R$',
+                'USD': '$',
+                'EUR': '€',
+                'GBP': '£',
+                'JPY': '¥'
+            };
+            
+            return `${symbols[currency] || currency} ${amount.toFixed(2)}`;
+        }
+        
+        // Auto-convert when amount changes
+        document.getElementById('from-amount').addEventListener('input', convertCurrency);
+        document.getElementById('from-currency').addEventListener('change', convertCurrency);
+        document.getElementById('to-currency').addEventListener('change', convertCurrency);
+        
+        // Initialize conversion
+        convertCurrency();
+    </script>
+</body>
+</html>

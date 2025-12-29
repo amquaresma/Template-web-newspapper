@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxente News - Portal de Notícias do Nordeste Brasileiro</title>
+    <meta name="description" content="Um jornal criado para o nordeste brasileiro, que valoriza nossa cultura e leva informação de forma leve, arretada e com muito orgulho da melhor região do brasil">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+            --branco: #FFFFFF;
+            --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --sombra-media: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --sombra-forte: 0 12px 40px rgba(0, 0, 0, 0.2);
+            --gradiente-dourado: linear-gradient(135deg, #f5d393 0%, #e6b85c 100%);
+            --gradiente-marrom: linear-gradient(135deg, #3a2415 0%, #5c3a21 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            color: var(--marrom-escuro);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #f5d393, #e6b85c, #d97706, #5c3a21);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Northeast Map Background */
+        .map-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.15"><path d="M200,200 Q300,150 400,200 T600,200 L550,350 Q500,400 450,350 T350,400 L300,300 Z" fill="none" stroke="%23543350B" stroke-width="2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* Hero Section */
+        .hero-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--marrom-escuro);
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+            box-shadow: var(--sombra-suave);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 0.9rem;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 900;
+            color: var(--branco);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-description {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--marrom-escuro);
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            box-shadow: var(--sombra-media);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1.2s ease-out 0.2s both;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--sombra-suave);
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--gradiente-marrom);
+            color: var(--branco);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-forte);
+            background: linear-gradient(135deg, #4a2f1a, #7a3d24);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--marrom-escuro);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-forte);
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .language-select {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(92, 58, 33, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--marrom-escuro);
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+        
+        .language-select:hover {
+            background: var(--branco);
+            box-shadow: var(--sombra-suave);
+        }
+        
+        .admin-btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--marrom-escuro);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(92, 58, 33, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            background: var(--branco);
+            transform: translateY(-2px);
+            box-shadow: var(--sombra-suave);
+        }
+        
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(84, 53, 11, 0.9);
+            color: var(--branco);
+            padding: 1.5rem;
+            text-align: center;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+            animation: slideUp 0.8s ease-out 0.6s forwards;
+        }
+        
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .footer-team {
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: clamp(2.2rem, 8vw, 4rem);
+            }
+            
+            .hero-description {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-container {
+                padding: 1rem;
+            }
+            
+            .hero-badge {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .language-selector {
+                top: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-end;
+            }
+            
+            .footer {
+                padding: 1rem;
+            }
+            
+            .footer p {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-description {
+                padding: 1.25rem;
+                font-size: 0.95rem;
+            }
+            
+            .btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Gradient Background -->
+    <div class="gradient-bg"></div>
+    
+    <!-- Northeast Map Overlay -->
+    <div class="map-overlay"></div>
+
+    <!-- Language Selector and Admin Button -->
+    <div class="language-selector">
+        <a href="admin.html" class="admin-btn">
+            <i class="fas fa-cog"></i>
+            <span data-translate="admin-access">Admin</span>
+        </a>
+        <select id="languageSelect" class="language-select">
+            <option value="pt">🇧🇷 Português</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
+    </div>
+
+    <!-- Main Hero Container -->
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge" data-translate="since">
+                Desde 2025 • Informação com o tempero nordestino
+            </div>
+            
+            <h1 class="hero-title">Oxente News</h1>
+            
+            <p class="hero-subtitle" data-translate="portal">
+                Portal de Notícias do Nordeste Brasileiro
+            </p>
+            
+            <div class="hero-description" data-translate="description">
+                <p data-translate="welcome">
+                    Se achegue e conheça o portal de notícias que celebra o Nordeste brasileiro!
+                </p>
+                <p>
+                    Aqui você encontra jornalismo de qualidade, cultura regional autêntica e toda a força do povo nordestino. Somos muito mais que notícias - somos tradição, inovação e orgulho dessa terra abençoada.
+                </p>
+            </div>
+            
+            <div class="hero-actions">
+                <a href="home.html" class="btn btn-primary">
+                    <i class="fas fa-newspaper"></i>
+                    <span data-translate="read-news">Ler Agora</span>
+                </a>
+                <a href="entertainment.html" class="btn btn-secondary">
+                    <i class="fas fa-music"></i>
+                    <span data-translate="entertainment">Entretenimento</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Oxente News - Todos os direitos reservados</p>
+            <p class="footer-team">Desenvolvido por: Matheus Quaresma, Tales Jardim, Maria Arevalo, João V. Queiroz, Sophia Marques</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            // In a real implementation, this would change the page language
+            console.log('Language changed to:', this.value);
+        });
+    </script>
+</body>
+</html>

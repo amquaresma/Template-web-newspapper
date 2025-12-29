@@ -1,0 +1,548 @@
+/* Oxente News - Modern Brazilian Newspaper Styles */
+
+:root {
+    --bege-claro: #FFDEB2;
+    --marrom-escuro: #54350B;
+    --laranja-queimado: #BF7716;
+    --amarelo-ocre: #DFA659;
+    --marrom-avermelhado: #773E2A;
+    --branco: #ffffff;
+    --cinza-claro: #f8f9fa;
+    --cinza-medio: #e9ecef;
+    --sombra-suave: rgba(0, 0, 0, 0.1);
+    --sombra-forte: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bege-claro) 0%, #ffffff 50%, #f8fafc 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+    color: var(--marrom-escuro);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 2rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 2rem; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--laranja-queimado);
+    border: 2px solid var(--laranja-queimado);
+}
+
+.btn-secondary:hover {
+    background: var(--laranja-queimado);
+    color: white;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--sombra-suave);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--sombra-forte);
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--cinza-medio);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+    background: var(--cinza-claro);
+    border-top: 1px solid var(--cinza-medio);
+}
+
+/* Navigation */
+.navigation {
+    background: white;
+    box-shadow: 0 2px 16px var(--sombra-suave);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px solid var(--laranja-queimado);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--cinza-medio);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.nav-logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--marrom-escuro);
+}
+
+.nav-logo p {
+    font-size: 0.9rem;
+    color: var(--laranja-queimado);
+    font-weight: 600;
+}
+
+.nav-temp {
+    background: var(--bege-claro);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--marrom-escuro);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--marrom-escuro);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--laranja-queimado);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Content Layout */
+.content-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.main-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.sidebar {
+    display: grid;
+    gap: 2rem;
+}
+
+/* Page Title */
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--marrom-escuro);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+    border-radius: 2px;
+}
+
+/* Weather Card */
+.weather-card {
+    background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--sombra-forte);
+    margin-bottom: 1.5rem;
+}
+
+.weather-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.weather-icon {
+    font-size: 1.2rem;
+}
+
+.city-selector {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 6px;
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.city-selector option {
+    background: var(--marrom-escuro);
+    color: white;
+}
+
+.weather-time {
+    margin-bottom: 1rem;
+}
+
+.date-time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.weather-info {
+    text-align: center;
+}
+
+.temp-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.temp-main span:first-child {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.weather-emoji {
+    font-size: 2rem;
+}
+
+.weather-desc {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+
+.weather-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.weather-detail span:first-child {
+    opacity: 0.75;
+}
+
+.weather-detail span:last-child {
+    font-weight: 600;
+}
+
+/* Financial Cards */
+.financial-cards {
+    display: grid;
+    gap: 1rem;
+}
+
+.financial-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--sombra-suave);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.financial-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--sombra-forte);
+}
+
+.ibovespa-card {
+    background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-escuro));
+    color: white;
+}
+
+.currency-card {
+    background: linear-gradient(135deg, var(--amarelo-ocre), var(--laranja-queimado));
+    color: white;
+}
+
+.bitcoin-card {
+    background: linear-gradient(135deg, var(--marrom-avermelhado), var(--marrom-escuro));
+    color: white;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-info {
+    flex: 1;
+}
+
+.card-label {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+}
+
+.card-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.card-change {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.card-change.positive {
+    color: #10b981;
+}
+
+.card-change.negative {
+    color: #ef4444;
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .content-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .nav-btn {
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .content-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .financial-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .weather-details {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1a1a1a;
+        --foreground: #ffffff;
+        --card: #2a2a2a;
+        --border: #404040;
+    }
+}
+
+/* Print styles */
+@media print {
+    .nav-menu,
+    .sidebar,
+    .financial-cards {
+        display: none;
+    }
+    
+    .content-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        color: black;
+    }
+    
+    body {
+        background: white;
+    }
+}

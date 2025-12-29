@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costumes e Tradições - Oxente News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, var(--bege-claro) 100%);
+            line-height: 1.6;
+            color: var(--marrom-escuro);
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--laranja-queimado);
+        }
+        
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-item {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: var(--laranja-queimado);
+            color: white;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        
+        .page-title {
+            grid-column: 1 / -1;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+            border-radius: 2px;
+        }
+        
+        .hero-section {
+            grid-column: 1 / 1;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+            color: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        .traditions-section {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .tradition-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tradition-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tradition-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--bege-claro), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .tradition-content {
+            padding: 2rem;
+        }
+        
+        .tradition-category {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .tradition-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 1rem;
+        }
+        
+        .tradition-description {
+            color: var(--marrom-avermelhado);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tradition-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .detail-tag {
+            background: var(--bege-claro);
+            color: var(--marrom-escuro);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .cuisine-section {
+            background: linear-gradient(135deg, var(--amarelo-ocre), var(--bege-claro));
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .cuisine-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .cuisine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .cuisine-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cuisine-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cuisine-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cuisine-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.5rem;
+        }
+        
+        .cuisine-description {
+            color: var(--marrom-avermelhado);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .folklore-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .folklore-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .folklore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .folklore-card {
+            background: var(--bege-claro);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .folklore-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .folklore-character {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .folklore-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .folklore-story {
+            color: var(--marrom-avermelhado);
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .crafts-section {
+            background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-avermelhado));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .crafts-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .crafts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .craft-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .craft-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .craft-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .craft-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .craft-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .weather-card {
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .weather-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-icon {
+            font-size: 1.2rem;
+        }
+        
+        .city-selector {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .city-selector option {
+            background: var(--marrom-escuro);
+            color: white;
+        }
+        
+        .weather-time {
+            margin-bottom: 1rem;
+        }
+        
+        .date-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .weather-info {
+            text-align: center;
+        }
+        
+        .temp-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .temp-main span:first-child {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .weather-emoji {
+            font-size: 2rem;
+        }
+        
+        .weather-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .weather-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .weather-detail span:first-child {
+            opacity: 0.75;
+        }
+        
+        .weather-detail span:last-child {
+            font-weight: 600;
+        }
+        
+        .financial-cards {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .financial-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .financial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+        }
+        
+        .financial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .financial-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .financial-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--marrom-escuro);
+        }
+        
+        .financial-icon {
+            font-size: 1.5rem;
+        }
+        
+        .financial-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--laranja-queimado);
+            margin-bottom: 0.5rem;
+        }
+        
+        .financial-change {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+        
+        .widget {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .festival-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bege-claro);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .festival-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .festival-icon {
+            font-size: 2rem;
+        }
+        
+        .festival-info h4 {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.25rem;
+        }
+        
+        .festival-info p {
+            font-size: 0.85rem;
+            color: var(--marrom-avermelhado);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--amarelo-ocre);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--laranja-queimado), transparent);
+            margin: 2rem 0;
+        }
+        
+        .footer-credits {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+            
+            .hero-section {
+                grid-column: 1 / 1;
+            }
+            
+            .cuisine-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .folklore-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .crafts-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-main">
+            <a href="index.html" class="logo">Oxente News</a>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-item">🏠 Home</a>
+                <a href="noticias.html" class="nav-item">📰 Notícias</a>
+                <a href="entertainment.html" class="nav-item">🎵 Entretenimento</a>
+                <a href="costumes.html" class="nav-item active">🎭 Costumes</a>
+                <a href="cotacoes.html" class="nav-item">📈 Cotações</a>
+                <a href="admin.html" class="nav-item">⚙️ Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <h1 class="page-title">🎭 Costumes e Tradições Nordestinas</h1>
+        
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2 class="hero-title">A Riqueza Cultural do Nordeste</h2>
+                <p class="hero-description">
+                    Mergulhe na diversidade cultural de uma região que preserva suas tradições centenárias enquanto abraça a modernidade. O Nordeste brasileiro é um verdadeiro patrimônio cultural da humanidade.
+                </p>
+            </section>
+
+            <!-- Traditional Celebrations -->
+            <section class="traditions-section">
+                <article class="tradition-card">
+                    <div class="tradition-image"><img src="imagens/bacurau.jpg"></div>
+                    <div class="tradition-content">
+                        <span class="tradition-category">Festa Tradicional</span>
+                        <h3 class="tradition-title">Festa Junina</h3>
+                        <p class="tradition-description">
+                            As festividades juninas do Nordeste são as mais autênticas do Brasil, com quadrilhas, fogueiras, comidas típicas e muita música. Campina Grande sedia o maior São João do mundo, atraindo milhões de visitantes todos os anos para celebrar as tradições rurais nordestinas.
+                        </p>
+                        <div class="tradition-details">
+                            <span class="detail-tag">Junho</span>
+                            <span class="detail-tag">Quadrilha</span>
+                            <span class="detail-tag">Forró</span>
+                            <span class="detail-tag">Fogueira</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tradition-card">
+                    <div class="tradition-image">🎪</div>
+                    <div class="tradition-content">
+                        <span class="tradition-category">Carnaval</span>
+                        <h3 class="tradition-title">Carnaval de Salvador e Olinda</h3>
+                        <p class="tradition-description">
+                            O carnaval nordestino é uma explosão de cores, ritmos e alegria. Salvador com seus trios elétricos e axé music, Olinda com seus bonecos gigantes e frevo pernambucano, cada cidade tem sua personalidade única mas mantém a essência da festa popular.
+                        </p>
+                        <div class="tradition-details">
+                            <span class="detail-tag">Fevereiro</span>
+                            <span class="detail-tag">Frevo</span>
+                            <span class="detail-tag">Axé</span>
+                            <span class="detail-tag">Bonecos</span>
+                        </div>
+                    </div>
+                </article>
+
+
+                <article class="tradition-card">
+                    <div class="tradition-image">⛪</div>
+                    <div class="tradition-content">
+                        <span class="tradition-category">Religiosidade</span>
+                        <h3 class="tradition-title">Festa de Iemanjá</h3>
+                        <p class="tradition-description">
+                            A devoção à Iemanjá é uma das tradições mais emocionantes da Bahia. No dia 2 de fevereiro, milhares de pessoas se dirigem às praias de Salvador para ofertar flores, perfumes e presentes à rainha do mar, em uma manifestação única de fé e cultura afro-brasileira.
+                        </p>
+                        <div class="tradition-details">
+                            <span class="detail-tag">2 de Fevereiro</span>
+                            <span class="detail-tag">Salvador</span>
+                            <span class="detail-tag">Candomblé</span>
+                            <span class="detail-tag">Oferendas</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tradition-card">
+                    <div class="tradition-image">🏇</div>
+                    <div class="tradition-content">
+                        <span class="tradition-category">Tradição Rural</span>
+                        <h3 class="tradition-title">Vaquejada</h3>
+                        <p class="tradition-description">
+                            Esporte genuinamente nordestino, a vaquejada é uma tradição que nasceu do trabalho cotidiano dos vaqueiros no sertão. Hoje é um dos maiores espetáculos da região, com grandes eventos que movimentam a economia local e preservam a cultura sertaneja.
+                        </p>
+                        <div class="tradition-details">
+                            <span class="detail-tag">Todo o ano</span>
+                            <span class="detail-tag">Sertão</span>
+                            <span class="detail-tag">Vaqueiros</span>
+                            <span class="detail-tag">Esporte</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tradition-card">
+                    <div class="tradition-image">🎤</div>
+                    <div class="tradition-content">
+                        <span class="tradition-category">Literatura Oral</span>
+                        <h3 class="tradition-title">Repente e Cordel</h3>
+                        <p class="tradition-description">
+                            A literatura de cordel e o repente são formas de expressão genuinamente nordestinas. Os cordelistas e repentistas mantêm viva a tradição oral, improvisando versos e contando histórias que retratam o cotidiano, a política e a cultura popular da região.
+                        </p>
+                        <div class="tradition-details">
+                            <span class="detail-tag">Literatura</span>
+                            <span class="detail-tag">Improviso</span>
+                            <span class="detail-tag">Xilogravura</span>
+                            <span class="detail-tag">Tradição Oral</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <br>
+
+            <!-- Cuisine Section -->
+            <section class="cuisine-section">
+                <h2 class="cuisine-title">🍽️ Gastronomia Típica Nordestina</h2>
+                <div class="cuisine-grid">
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🦐</div>
+                        <div class="cuisine-name">Acarajé</div>
+                        <p class="cuisine-description">Bolinho de feijão-fradinho frito no dendê, recheado com vatapá, caruru e camarão seco.</p>
+                    </div>
+                    
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🥘</div>
+                        <div class="cuisine-name">Moqueca</div>
+                        <p class="cuisine-description">Prato à base de peixe ou frutos do mar cozidos em panela de barro com leite de coco e dendê.</p>
+                    </div>
+                    
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🌽</div>
+                        <div class="cuisine-name">Pamonha</div>
+                        <p class="cuisine-description">Doce ou salgada, feita com milho verde e cozida na própria palha do milho.</p>
+                    </div>
+                    
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🥩</div>
+                        <div class="cuisine-name">Carne de Sol</div>
+                        <p class="cuisine-description">Carne salgada e seca ao sol, tradicionalmente servida com macaxeira e queijo coalho.</p>
+                    </div>
+                    
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🥥</div>
+                        <div class="cuisine-name">Cocada</div>
+                        <p class="cuisine-description">Doce tradicional feito com coco ralado e açúcar, podendo ser branca ou queimada.</p>
+                    </div>
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🍲</div>
+                        <div class="cuisine-name">Baião de Dois
+                        </div>
+                        <p class="cuisine-description">Prato clássico que mistura arroz, feijão verde ou feijão de corda, queijo coalho, manteiga de garrafa e às vezes carne seca.</p>
+                    </div>
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🥧</div>
+                        <div class="cuisine-name">Cuscuz Nordestino</div>
+                        <p class="cuisine-description">Massa de milho flocada cozida no vapor, geralmente servida no café da manhã ou jantar, acompanhada de manteiga, ovos, carne de sol ou leite de coco.</p>
+                    </div>
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🍖</div>
+                        <div class="cuisine-name">Cocada</div>
+                        <p class="cuisine-description">Prato forte feito com miúdos de porco (ou bode) cozidos com bastante tempero, cebola, pimentão, tomate e sangue coagulado. Típico do sertão nordestino.Prato forte feito com miúdos de porco (ou bode) cozidos com bastante tempero.</p>
+                    </div>
+                    <div class="cuisine-item">
+                        <div class="cuisine-icon">🍌</div>
+                        <div class="cuisine-name">Cartola</div>
+                        <p class="cuisine-description">Sobremesa tradicional de Pernambuco: banana frita, coberta com queijo manteiga ou queijo coalho, polvilhada com açúcar e canela.</p>
+                    </div>
+                    
+                </div>
+            </section>
+            <br>
+
+            <!-- Crafts Section -->
+            <section class="crafts-section">
+                <h2 class="crafts-title">🎨 Artesanato Tradicional</h2>
+                <div class="crafts-grid">
+                    <div class="craft-item">
+                        <div class="craft-icon">🏺</div>
+                        <div class="craft-name">Cerâmica</div>
+                        <p class="craft-description">Tradição milenar que produz panelas, potes e objetos decorativos únicos.</p>
+                    </div>
+                    
+                    <div class="craft-item">
+                        <div class="craft-icon">🧺</div>
+                        <div class="craft-name">Cestaria</div>
+                        <p class="craft-description">Arte de tecer cestas e objetos utilitários com fibras naturais locais.</p>
+                    </div>
+                    
+                    <div class="craft-item">
+                        <div class="craft-icon">🪡</div>
+                        <div class="craft-name">Bordado</div>
+                        <p class="craft-description">Técnicas refinadas que decoram roupas e tecidos com motivos regionais.</p>
+                    </div>
+                    
+                    <div class="craft-item">
+                        <div class="craft-icon">🪵</div>
+                        <div class="craft-name">Xilogravura</div>
+                        <p class="craft-description">Arte de gravar em madeira, tradicionalmente usada na literatura de cordel.</p>
+                    </div>
+                    
+                    <div class="craft-item">
+                        <div class="craft-icon">💎</div>
+                        <div class="craft-name">Pedras</div>
+                        <p class="craft-description">Lapidação e trabalho artístico com pedras preciosas e semipreciosas.</p>
+                    </div>
+                    
+                    <div class="craft-item">
+                        <div class="craft-icon">🧵</div>
+                        <div class="craft-name"> Renda</div>
+                        <p class="craft-description">Técnica artesanal de entrelaçar fios, criando desenhos delicados em tecidos,muito presentes em PE, PB e CE.                        </p>
+                    </div>
+                    <div class="craft-item">
+                        <div class="craft-icon">🥥</div>
+                        <div class="craft-name">Coco</div>
+                        <p class="craft-description">Artesanato sustentável usando fibras e cascas de coco.</p>
+                    </div>
+                    <div class="craft-item">
+                        <div class="craft-icon">🎭</div>
+                        <div class="craft-name">Máscaras e Bonecos de Carnaval</div>
+                        <p class="craft-description">Produção artesanal de máscaras, bonecos gigantes e adereços usados em festas tradicionais como o Carnaval de Olinda </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Weather Card -->
+            <div class="weather-card">
+                <div class="weather-header">
+                    <span class="weather-icon">📍</span>
+                    <select id="city-selector" class="city-selector">
+                        <option value="recife">Recife, PE</option>
+                        <option value="salvador">Salvador, BA</option>
+                        <option value="fortaleza">Fortaleza, CE</option>
+                        <option value="joao-pessoa">João Pessoa, PB</option>
+                        <option value="natal">Natal, RN</option>
+                        <option value="maceio">Maceió, AL</option>
+                        <option value="aracaju">Aracaju, SE</option>
+                        <option value="teresina">Teresina, PI</option>
+                        <option value="sao-luis">São Luís, MA</option>
+                    </select>
+                </div>
+                
+                <div class="weather-time">
+                    <div class="date-time">
+                        <span class="date-icon">📅</span>
+                        <span id="current-date">25 de Junho, 2025</span>
+                    </div>
+                    <div class="date-time">
+                        <span class="time-icon">🕐</span>
+                        <span id="current-time">14:30</span>
+                    </div>
+                </div>
+                
+                <div class="weather-info">
+                    <div class="temp-main">
+                        <span id="temperature">28°C</span>
+                        <span class="weather-emoji" id="weather-emoji">☀️</span>
+                    </div>
+                    <div class="weather-desc" id="weather-desc">Ensolarado</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span>Umidade</span>
+                            <span id="humidity">65%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span>Vento</span>
+                            <span id="wind-speed">12 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Cards -->
+            <div class="financial-cards">
+                <div class="financial-card" onclick="window.location.href='cotacoes.html'">
+                    <div class="financial-header">
+                        <span class="financial-title">IBOVESPA</span>
+                        <span class="financial-icon">📈</span>
+                    </div>
+                    <div class="financial-value" id="ibovespa-value">125.840</div>
+                    <div class="financial-change positive" id="ibovespa-change">+1.2%</div>
+                </div>
+                
+                <div class="financial-card" onclick="window.location.href='cotacoes.html'">
+                    <div class="financial-header">
+                        <span class="financial-title">USD/BRL</span>
+                        <span class="financial-icon">💱</span>
+                    </div>
+                    <div class="financial-value" id="usd-brl-value">R$ 5.12</div>
+                    <div class="financial-change negative" id="usd-brl-change">-0.8%</div>
+                </div>
+                
+                <div class="financial-card" onclick="window.location.href='cotacoes.html'">
+                    <div class="financial-header">
+                        <span class="financial-title">Bitcoin</span>
+                        <span class="financial-icon">₿</span>
+                    </div>
+                    <div class="financial-value" id="bitcoin-value">$43.250</div>
+                    <div class="financial-change positive" id="bitcoin-change">+2.5%</div>
+                </div>
+            </div>
+
+            <!-- Cultural Events Widget -->
+            <div class="widget">
+                <h3 class="widget-title">🎭 Eventos Culturais</h3>
+                <div class="festival-item">
+                    <span class="festival-icon">🎪</span>
+                    <div class="festival-info">
+                        <h4>Festival de Folclore de Olinda</h4>
+                        <p>Celebração da cultura popular pernambucana</p>
+                    </div>
+                </div>
+                
+                <div class="festival-item">
+                    <span class="festival-icon">🎵</span>
+                    <div class="festival-info">
+                        <h4>Encontro de Violeiros</h4>
+                        <p>Tradição musical do sertão nordestino</p>
+                    </div>
+                </div>
+                
+                <div class="festival-item">
+                    <span class="festival-icon">🎨</span>
+                    <div class="festival-info">
+                        <h4>Feira de Artesanato de Caruaru</h4>
+                        <p>Maior feira de artesanato do Nordeste</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Oxente News</div>
+            <div class="footer-text">
+                O portal de notícias que celebra a cultura nordestina
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-credits">
+                © Desenvolvido pelo grupo Door Solutions<br>
+                Matheus Quaresma, Tales Jardim, Maria Arevalo, João V. Queiroz, Sophia Marques<br>
+                Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

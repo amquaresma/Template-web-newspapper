@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Receta de bolo de macaxeira- Oxente News</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, var(--bege-claro) 100%);
+            line-height: 1.6;
+            color: var(--marrom-escuro);
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--laranja-queimado);
+        }
+
+        .header-top {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .date-time-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--laranja-queimado);
+            color: white;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--bege-claro);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(191, 119, 22, 0.2);
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--laranja-queimado);
+        }
+
+        .breadcrumb-separator {
+            color: var(--marrom-avermelhado);
+            margin: 0 0.5rem;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Article */
+        .article-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-header {
+            padding: 2rem 2rem 1rem;
+        }
+
+        .article-category {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .article-subtitle {
+            font-size: 1.2rem;
+            color: var(--marrom-avermelhado);
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--bege-claro);
+            border-bottom: 1px solid var(--bege-claro);
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--marrom-avermelhado);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+        }
+
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://s2-g1.glbimg.com/TyUnlnYPBtwKCSd5U2b13GaqO9c=/0x0:1920x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/A/B/auE7RtTjaAJy51e2LXFw/foto-4-.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-credit {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Article Content */
+        .article-content {
+            padding: 0 2rem 2rem;
+        }
+
+        .article-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--marrom-escuro);
+        }
+
+        .article-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin: 2rem 0 1rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--bege-claro), rgba(255, 222, 178, 0.5));
+            border-left: 4px solid var(--laranja-queimado);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .quote {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Gallery */
+        .gallery {
+            margin: 2rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Social Share */
+        .social-share {
+            background: var(--bege-claro);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .share-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--marrom-escuro);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+        }
+
+        .share-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .share-btn.linkedin {
+            background: #0077b5;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-article {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--bege-claro);
+        }
+
+        .related-article:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .related-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .related-content h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--marrom-escuro);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-date {
+            font-size: 0.8rem;
+            color: var(--marrom-avermelhado);
+        }
+
+        /* Weather Widget */
+        .weather-widget {
+            background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-avermelhado));
+            color: white;
+        }
+
+        .weather-info {
+            text-align: center;
+        }
+
+        .weather-temp {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .weather-desc {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 568px) {
+
+            .article-header,
+            .article-content {
+                padding: 1.5rem;
+            }
+
+            .article-title {
+                font-size: 1.5rem;
+            }
+
+            .featured-image {
+                height: 250px;
+            }
+
+            .share-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="date-time-header">
+                    <span id="current-date-header">quarta-feira, 25 de junho de 2025</span>
+                    <span>•</span>
+                    <span id="current-time-header">14:30</span>
+                    <span>•</span>
+                    <span>Horário de Brasília</span>
+                </div>
+                <div>
+                    <span>Bitcoin: $<span class="bitcoin-price">107,923</span> <span
+                            class="bitcoin-change">+2.75%</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <a class="logo" href="index.html">Oxente News</a>
+            <nav class="nav-menu">
+                <a class="nav-item" href="home.html">🏠 Home</a>
+                <a class="nav-item active" href="noticias.html">📰 Notícias</a>
+                <a class="nav-item" href="entertainment.html">🎵 Entretenimento</a>
+                <a class="nav-item" href="costumes.html">🎭 Costumes</a>
+                <a class="nav-item" href="cotacoes.html">📈 Cotações</a>
+                <a class="nav-item" href="admin.html">⚙️ Admin</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Breadcrumb -->
+    
+<nav class="breadcrumb">
+    <div class="breadcrumb-content">
+        <a href="home.html">Home</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="noticias.html">Notícias</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="#">Cultura</a>
+        <span class="breadcrumb-separator">›</span>
+        <span>Bolo de Macaxeira</span>
+    </div>
+</nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Article -->
+        
+<article class="article-container">
+    <div class="article-header">
+        <div class="article-category">Cultura</div>
+        <h1 class="article-title">Bolo de macaxeira: aprenda a fazer receita junina tradicional no Ceará</h1>
+        <p class="article-subtitle">A chef Geórgia ensina como preparar um delicioso bolo de macaxeira à moda sertaneja, perfeito para os festejos de São João.</p>
+        <div class="article-meta">
+            <div class="author-info">
+                <div class="author-avatar">MA</div>
+                <div>
+                    <div class="author-name">Maria Arevalo</div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        1 de julho de 2025
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                Leitura de 4 min
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-map-marker-alt"></i>
+                Fortaleza, CE
+            </div>
+        </div>
+    </div>
+    <div class="featured-image">
+        <div class="image-overlay">
+            <div class="image-caption"><p>Bolo de macaxeira tradicional do sertão cearense</p></div>
+            <div class="image-credit">Foto: Divulgação / Chef Geórgia</div>
+        </div>
+    </div>
+    <div class="article-content">
+        <div class="article-text">
+            <p>A macaxeira, também conhecida como aipim ou mandioca, é um ingrediente típico da culinária nordestina e marca presença nos festejos juninos do Ceará. Entre os pratos mais amados da época está o tradicional bolo de macaxeira, feito de forma rústica e com muito sabor.</p>
+
+            <p>A receita ensinada pela chef Geórgia é simples e remete ao modo de preparo tradicional do sertão, utilizando poucos utensílios e sem necessidade de liquidificador ou batedeira.</p>
+
+            <h3>Ingredientes:</h3>
+            <ul style="margin-bottom:1.5rem;">
+                <li>1kg de macaxeira ralada</li>
+                <li>1 lata de leite condensado</li>
+                <li>1 xícara de açúcar</li>
+                <li>3 ovos</li>
+                <li>200ml de leite de coco</li>
+                <li>150ml de leite integral</li>
+                <li>50g de queijo parmesão ralado</li>
+                <li>3 colheres de sopa de margarina ou manteiga</li>
+                <li>100g de coco fresco ralado</li>
+                <li>50g de coco ralado desidratado</li>
+            </ul>
+
+            <h3>Modo de preparo:</h3>
+            <ol style="margin-bottom:1.5rem;">
+                <li>Rale a macaxeira em pedaços pequenos.</li>
+                <li>Em uma tigela funda, misture a macaxeira ralada, o coco fresco e o queijo parmesão.</li>
+                <li>Adicione os ovos, a manteiga, o leite condensado, o açúcar, o leite de coco e o leite integral. Misture bem até obter uma massa homogênea.</li>
+                <li>Unte uma forma com margarina ou manteiga.</li>
+                <li>Despeje a massa na forma e espalhe de forma uniforme.</li>
+                <li>Polvilhe o coco ralado desidratado por cima da massa.</li>
+                <li>Leve ao forno pré-aquecido a 180°C por cerca de 25 minutos ou até dourar.</li>
+            </ol>
+
+            <div class="quote">
+                <div class="quote-text">"Essa é uma receita de raiz, feita com carinho, como se faz no sertão. O segredo está na macaxeira fresca e no coco natural."</div>
+                <div class="quote-author">— Chef Geórgia</div>
+            </div>
+
+            <p>Sirva ainda morno com café ou como sobremesa nas festas juninas. O bolo de macaxeira é uma celebração dos sabores do Ceará e uma verdadeira herança da cultura nordestina.</p>
+
+            <div class="gallery">
+                <h3>Galeria de Imagens</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item" style="background-image: url('https://s2-g1.glbimg.com/TyUnlnYPBtwKCSd5U2b13GaqO9c=/0x0:1920x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/A/B/auE7RtTjaAJy51e2LXFw/foto-4-.jpg')"></div>
+                    <div class="gallery-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-YS_8A7X-ltOaid4li-f9SyvVFqum5_Wg0w&s')"></div>
+                    <div class="gallery-item" style="background-image: url('https://tv.sbt.com.br/_next/image?url=https%3A%2F%2Fstatic.sbt.com.br%2Fnoticias%2Fimages%2F167563.jpg&w=1080&q=90')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Related Articles Widget -->
+            <div class="widget">
+                <h3 class="widget-title">Notícias Relacionadas</h3>
+                <div class="related-article">
+                    <div class="related-image">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="related-content">
+                        <h4>Bumba Meu Boi do Maranhão é reconhecido pela UNESCO</h4>
+                        <div class="related-date">23 de junho de 2025</div>
+                    </div>
+                </div>
+                <div class="related-article">
+                    <div class="related-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="related-content">
+                        <h4>Turismo no Nordeste bate recorde histórico em 2025</h4>
+                        <div class="related-date">24 de junho de 2025</div>
+                    </div>
+                </div>
+                <div class="related-article">
+                    <div class="related-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="related-content">
+                        <h4>Feira de São Cristóvão promove festival gastronômico</h4>
+                        <div class="related-date">21 de junho de 2025</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <!-- Footer -->
+    <footer style="background: var(--marrom-escuro); color: white; padding: 2rem 0; margin-top: 4rem;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 1rem;">
+            <p style="margin-bottom: 1rem;">© 2025 Oxente News - Todos os direitos reservados</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Desenvolvido com ❤️ para o Nordeste brasileiro</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entretenimento - Oxente News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, var(--bege-claro) 100%);
+            line-height: 1.6;
+            color: var(--marrom-escuro);
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--laranja-queimado);
+        }
+        
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-item {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: var(--laranja-queimado);
+            color: white;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        
+        .page-title {
+            grid-column: 1 / -1;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+            border-radius: 2px;
+        }
+        
+        .content-grid {
+            display: grid;
+            gap: 3rem;
+        }
+        
+        .music-section {
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .music-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .spotify-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+        .spotify-container{
+            align-items: center;
+            align-content:space-around;
+        }
+        
+        .current-track {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .track-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .track-artist {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .track-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .play-btn {
+            background: rgba(255, 255, 255, 0.3);
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+        }
+        
+        .entertainment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .entertainment-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .entertainment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--bege-claro), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-category {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .card-description {
+            color: var(--marrom-avermelhado);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .festivals-section {
+            background: linear-gradient(135deg, var(--amarelo-ocre), var(--bege-claro));
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .festivals-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .festivals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .festival-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .festival-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .festival-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .festival-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.5rem;
+        }
+        
+        .festival-location {
+            color: var(--marrom-avermelhado);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .festival-date {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .weather-card {
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--marrom-avermelhado));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .weather-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-icon {
+            font-size: 1.2rem;
+        }
+        
+        .city-selector {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .city-selector option {
+            background: var(--marrom-escuro);
+            color: white;
+        }
+        
+        .weather-time {
+            margin-bottom: 1rem;
+        }
+        
+        .date-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .weather-info {
+            text-align: center;
+        }
+        
+        .temp-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .temp-main span:first-child {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .weather-emoji {
+            font-size: 2rem;
+        }
+        
+        .weather-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .weather-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .weather-detail span:first-child {
+            opacity: 0.75;
+        }
+        
+        .weather-detail span:last-child {
+            font-weight: 600;
+        }
+        
+        .financial-cards {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .financial-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .financial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+        }
+        
+        .financial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .financial-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .financial-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--marrom-escuro);
+        }
+        
+        .financial-icon {
+            font-size: 1.5rem;
+        }
+        
+        .financial-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--laranja-queimado);
+            margin-bottom: 0.5rem;
+        }
+        
+        .financial-change {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+        
+        .widget {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .event-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bege-claro);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-date {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .event-info h4 {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        
+        .event-location {
+            font-size: 0.8rem;
+            color: var(--marrom-avermelhado);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--amarelo-ocre);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--laranja-queimado), transparent);
+            margin: 2rem 0;
+        }
+        
+        .footer-credits {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .charge-name{
+            font-size: larger;
+            font-style: bold;
+            color: white;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+            
+            .entertainment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .festivals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-main">
+            <a href="index.html" class="logo">Oxente News</a>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-item">🏠 Home</a>
+                <a href="noticias.html" class="nav-item">📰 Notícias</a>
+                <a href="entertainment.html" class="nav-item active">🎵 Entretenimento</a>
+                <a href="costumes.html" class="nav-item">🎭 Costumes</a>
+                <a href="cotacoes.html" class="nav-item">📈 Cotações</a>
+                <a href="admin.html" class="nav-item">⚙️ Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <h1 class="page-title">🎵 Entretenimento Nordestino</h1>
+        
+        <!-- Main Content -->
+        <main class="content-grid">
+            <!-- Music Section -->
+            <section class="music-section">
+                <h2 class="music-title">🎵 Rádio Nordeste</h2>
+                <div class="spotify-container">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2P2noGLEsnUXgdJGRzIenp?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>                </div>
+            </section>
+
+            <!-- Entertainment Cards -->
+            <div class="entertainment-grid">
+                <article class="entertainment-card">
+                    <div class="card-image"><img src="imagens/teatro de rn.jpeg"></div>
+                    <div class="card-content">
+                        <span class="card-category">Teatro</span>
+                        <h3 class="card-title">Festival de Teatro de Natal: Mais de 50 espetáculos celebram a cultura nordestina em Natal (RN), de 15 a 30 de julho.</h3>
+                        <p class="card-description">
+                            O maior festival de artes cênicas do Rio Grande do Norte celebra a cultura nordestina com apresentações de grupos locais e nacionais.
+                        </p>
+                        <div class="card-meta">
+                            <span>📍 Natal, RN</span>
+                            <span>15-30 de Julho</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entertainment-card">
+                    <div class="card-image"><img src="imagens/bacurau.jpg"></div>
+                    <div class="card-content">
+                        <span class="card-category">Cinema</span>
+                        <h3 class="card-title">Filme "Bacurau" ganha sequência rodada no sertão</h3>
+                        <p class="card-description">
+                            Produção cinematográfica nordestina ganha destaque internacional com nova obra que retrata a realidade do interior da região.
+                        </p>
+                        <div class="card-meta">
+                            <span>📍 Sertão de PE</span>
+                            <span>Em produção</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entertainment-card">
+                    <div class="card-image"><img src="imagens/bienal.jpg"></div>
+                    <div class="card-content">
+                        <span class="card-category">Arte</span>
+                        <h3 class="card-title">Bienal de Arte Contemporânea de Fortaleza</h3>
+                        <p class="card-description">
+                            Exposição reúne mais de 100 artistas nordestinos apresentando obras que dialogam com a identidade regional e questões contemporâneas.
+                        </p>
+                        <div class="card-meta">
+                            <span>📍 Fortaleza, CE</span>
+                            <span>Agosto 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entertainment-card">
+                    <div class="card-image"><img src="imagens/flip.jpg"></div>
+                    <div class="card-content">
+                        <span class="card-category">Literatura</span>
+                        <h3 class="card-title">FLIP Sertão celebra literatura de cordel</h3>
+                        <p class="card-description">
+                            Festival literário dedicado à poesia popular nordestina reúne cordelistas, repentistas e escritores de toda a região.
+                        </p>
+                        <div class="card-meta">
+                            <span>📍 Caruaru, PE</span>
+                            <span>Setembro 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entertainment-card">
+                    <div class="card-image"><img src="imagens/tiririca.jpeg"></div>
+                    <div class="card-content">
+                        <span class="card-category">Gastronomia</span>
+                        <h3 class="card-title">Festival Gastronômico de Tiririca</h3>
+                        <p class="card-description">
+                            Festival Gastronômico de Tiririca: Evento valoriza a culinária nordestina com chefs regionais em Tiririca (BA), reunindo pratos típicos e música local.                        </p>
+                        <div class="card-meta">
+                            <span>📍 Tiririca, BA</span>
+                            <span>Julho</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entertainment-card">
+                    <div class="card-image"><img src="imagens/forro.jpg"></div>
+                    <div class="card-content">
+                        <span class="card-category">Música</span>
+                        <h3 class="card-title">Festival de Forró de Campina Grande 2025</h3>
+                        <p class="card-description">
+                            O maior festival de forró do mundo confirma lineup com grandes nomes da música nordestina e brasileira para a edição deste ano.
+                        </p>
+                        <div class="card-meta">
+                            <span>📍 Campina Grande, PB</span>
+                            <span>Junho 2025</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Festivals Section -->
+            <section class="festivals-section">
+                <h2 class="festivals-title">🎉 Festivais e Eventos Tradicionais</h2>
+                <div class="festivals-grid">
+                    <div class="festival-item">
+                        <div class="festival-icon">🎭</div>
+                        <div class="festival-name">Festival de Inverno de Bonito</div>
+                        <div class="festival-location">Chapada Diamantina, BA</div>
+                        <span class="festival-date">Julho</span>
+                    </div>
+                    
+                    <div class="festival-item">
+                        <div class="festival-icon">🎵</div>
+                        <div class="festival-name">Carnaval de Salvador</div>
+                        <div class="festival-location">Salvador, BA</div>
+                        <span class="festival-date">Fevereiro</span>
+                    </div>
+                    
+                    <div class="festival-item">
+                        <div class="festival-icon">🎪</div>
+                        <div class="festival-name">Carnaval de Olinda</div>
+                        <div class="festival-location">Olinda, PE</div>
+                        <span class="festival-date">Fevereiro</span>
+                    </div>
+                    
+                    <div class="festival-item">
+                        <div class="festival-icon">🎤</div>
+                        <div class="festival-name">Festival de Forró</div>
+                        <div class="festival-location">Campina Grande, PB</div>
+                        <span class="festival-date">Junho</span>
+                    </div>
+                    
+                    <div class="festival-item">
+                        <div class="festival-icon">🎺</div>
+                        <div class="festival-name">Bumba-meu-boi</div>
+                        <div class="festival-location">São Luís, MA</div>
+                        <span class="festival-date">Junho</span>
+                    </div>
+                    
+                    <div class="festival-item">
+                        <div class="festival-icon">🎨</div>
+                        <div class="festival-name">Festival de Arte de Garanhuns</div>
+                        <div class="festival-location">Garanhuns, PE</div>
+                        <span class="festival-date">Julho</span>
+                    </div>
+                    <div class="festival-item">
+                        <div class="festival-icon">🎨</div>
+                        <div class="festival-name">Festival de Arte de Garanhuns</div>
+                        <div class="festival-location">Garanhuns, PE</div>
+                        <span class="festival-date">Julho</span>
+                    </div>
+                    <div class="festival-item">
+                        <div class="festival-icon">🎨</div>
+                        <div class="festival-name">Festival de Arte de Garanhuns</div>
+                        <div class="festival-location">Garanhuns, PE</div>
+                        <span class="festival-date">Julho</span>
+                    </div>
+                      <div class="festival-item">
+                        <div class="festival-icon">🎨</div>
+                        <div class="festival-name">Festival de Arte de Garanhuns</div>
+                        <div class="festival-location">Garanhuns, PE</div>
+                        <span class="festival-date">Julho</span>
+                    </div>
+                </div>
+            </section>
+            <section class="music-section" style="align-items: center;">
+                <h2 class="music-title"> Charges </h2>
+                <div class="charge-name">Sabedoria de Mainha - por: João Victor Queiroz</div>
+                <div class="spotify-container">
+                    <img src="sabedoria de mainha.jpg" align-items="center" width="50%" height="60%" frameBorder="0" alt="Charge Sabedoriade Mainha"> 
+                </div>
+                <br>
+                <div class="charge-name"> Tecnologia do Sertão - por: João Victor Queiroz</div>
+                <div class="spotify-container">
+                    <img src="bombril.jpg" align-items="center" width="50%" height="60%" frameBorder="0" alt="Charge Sabedoriade Mainha"> 
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Weather Card -->c:\Users\mathq\Downloads\bombril.jpg
+            <div class="weather-card">
+                <div class="weather-header">
+                    <span class="weather-icon">📍</span>
+                    <select id="city-selector" class="city-selector">
+                        <option value="recife">Recife, PE</option>
+                        <option value="salvador">Salvador, BA</option>
+                        <option value="fortaleza">Fortaleza, CE</option>
+                        <option value="joao-pessoa">João Pessoa, PB</option>
+                        <option value="natal">Natal, RN</option>
+                        <option value="maceio">Maceió, AL</option>
+                        <option value="aracaju">Aracaju, SE</option>
+                        <option value="teresina">Teresina, PI</option>
+                        <option value="sao-luis">São Luís, MA</option>
+                    </select>
+                </div>
+                
+                <div class="weather-time">
+                    <div class="date-time">
+                        <span class="date-icon">📅</span>
+                        <span id="current-date">25 de Junho, 2025</span>
+                    </div>
+                    <div class="date-time">
+                        <span class="time-icon">🕐</span>
+                        <span id="current-time">14:30</span>
+                    </div>
+                </div>
+                
+                <div class="weather-info">
+                    <div class="temp-main">
+                        <span id="temperature">28°C</span>
+                        <span class="weather-emoji" id="weather-emoji">☀️</span>
+                    </div>
+                    <div class="weather-desc" id="weather-desc">Ensolarado</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span>Umidade</span>
+                            <span id="humidity">65%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span>Vento</span>
+                            <span id="wind-speed">12 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Cards -->
+            <div class="financial-cards">
+                <div class="financial-card" onclick="window.location.href='cotacoes.html'">
+                    <div class="financial-header">
+                        <span class="financial-title">IBOVESPA</span>
+                        <span class="financial-icon">📈</span>
+                    </div>
+                    <div class="financial-value" id="ibovespa-value">125.840</div>
+                    <div class="financial-change positive" id="ibovespa-change">+1.2%</div>
+                </div>
+                
+                <div class="financial-card" onclick="window.location.href='cotacoes.html'">
+                    <div class="financial-header">
+                        <span class="financial-title">USD/BRL</span>
+                        <span class="financial-icon">💱</span>
+                    </div>
+                    <div class="financial-value" id="usd-brl-value">R$ 5.12</div>
+                    <div class="financial-change negative" id="usd-brl-change">-0.8%</div>
+                </div>
+                
+                <div class="financial-card" onclick="window.location.href='cotacoes.html'">
+                    <div class="financial-header">
+                        <span class="financial-title">Bitcoin</span>
+                        <span class="financial-icon">₿</span>
+                    </div>
+                    <div class="financial-value" id="bitcoin-value">$43.250</div>
+                    <div class="financial-change positive" id="bitcoin-change">+2.5%</div>
+                </div>
+            </div>
+
+            <!-- Events Widget -->
+            <div class="widget">
+                <h3 class="widget-title">📅 Próximos Eventos</h3>
+                <div class="event-item">
+                    <div class="event-date">JUL<br>15</div>
+                    <div class="event-info">
+                        <h4>Festival de Teatro de Natal</h4>
+                        <div class="event-location">📍 Natal, RN</div>
+                    </div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">AGO<br>20</div>
+                    <div class="event-info">
+                        <h4>Bienal de Arte Contemporânea</h4>
+                        <div class="event-location">📍 Fortaleza, CE</div>
+                    </div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">SET<br>10</div>
+                    <div class="event-info">
+                        <h4>FLIP Sertão</h4>
+                        <div class="event-location">📍 Caruaru, PE</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Oxente News</div>
+            <div class="footer-text">
+                O portal de notícias que celebra a cultura nordestina
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-credits">
+                © Desenvolvido pelo grupo Door Solutions<br>
+                Matheus Quaresma, Tales Jardim, Maria Arevalo, João V. Queiroz, Sophia Marques<br>
+                Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

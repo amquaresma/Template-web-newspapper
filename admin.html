@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Administrativo - Oxente Newspaper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --marrom-escuro: #5C3A21;
+            --laranja-queimado: #D97706;
+            --marrom-avermelhado: #A0522D;
+            --bege-claro: #F5DEB3;
+            --sombra-suave: rgba(0, 0, 0, 0.1);
+            --sombra-forte: rgba(0, 0, 0, 0.2);
+            --gradiente-dourado: linear-gradient(135deg, #f3d98a 0%, #e6b85c 50%, #d97706 100%);
+            --gradiente-marrom: linear-gradient(135deg, #5C3A21 0%, #A0522D 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .admin-background {
+            background: var(--gradiente-dourado);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Floating Elements Animation */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .animate-float-slow {
+            animation: float 12s ease-in-out infinite;
+        }
+        
+        .animate-float-reverse {
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        /* Main Container */
+        .admin-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Admin Form */
+        .admin-form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .admin-form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+        
+        .admin-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .admin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradiente-marrom);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .admin-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradiente-marrom);
+            border-radius: 3px;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
+        }
+        
+        .email-input {
+            background: var(--gradiente-marrom);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .password-group {
+            position: relative;
+        }
+        
+        .password-input {
+            background: var(--gradiente-marrom);
+            color: white;
+            padding-right: 3.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            z-index: 3;
+        }
+        
+        .password-toggle:hover {
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradiente-dourado);
+            color: var(--marrom-escuro);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+        }
+        
+        .login-btn:hover::before {
+            left: 100%;
+        }
+        
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Help Text */
+        .help-text {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--marrom-escuro);
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(92, 58, 33, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .help-text p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .help-text strong {
+            font-weight: 600;
+            color: var(--marrom-avermelhado);
+        }
+        
+        /* Back Link */
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: var(--gradiente-marrom);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            z-index: 20;
+            box-shadow: 0 4px 16px var(--sombra-suave);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-link:hover {
+            background: linear-gradient(135deg, #4a2f1a, #7a3d24);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--sombra-forte);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 300px;
+            z-index: 5;
+        }
+        
+        /* Weather Card */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .weather-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+        
+        .city-selector {
+            flex: 1;
+            background: rgba(245, 222, 179, 0.3);
+            border: 1px solid rgba(92, 58, 33, 0.2);
+            border-radius: 8px;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--marrom-escuro);
+        }
+        
+        .weather-time {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .date-time {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--marrom-escuro);
+        }
+        
+        .date-icon, .time-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .weather-info {
+            text-align: center;
+        }
+        
+        .temp-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        #temperature {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-right: 0.5rem;
+        }
+        
+        .weather-emoji {
+            font-size: 2rem;
+        }
+        
+        .weather-desc {
+            font-size: 1rem;
+            color: var(--marrom-avermelhado);
+            margin-bottom: 1rem;
+        }
+        
+        .weather-details {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .weather-detail {
+            text-align: center;
+        }
+        
+        .weather-detail span:first-child {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--marrom-avermelhado);
+        }
+        
+        .weather-detail span:last-child {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+        }
+        
+        /* Financial Cards */
+        .financial-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .financial-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .financial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-info {
+            flex: 1;
+        }
+        
+        .card-label {
+            font-size: 0.8rem;
+            color: var(--marrom-avermelhado);
+            margin-bottom: 0.25rem;
+        }
+        
+        .card-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.25rem;
+        }
+        
+        .card-change {
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .positive {
+            color: #16a34a;
+        }
+        
+        .negative {
+            color: #dc2626;
+        }
+        
+        .card-icon {
+            font-size: 1.8rem;
+            color: var(--laranja-queimado);
+        }
+        
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--marrom-escuro);
+            z-index: 10;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer p {
+            margin-bottom: 0.25rem;
+        }
+        
+        .footer-rights {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto 2rem;
+            }
+            
+            .admin-container {
+                flex-direction: column;
+                padding: 2rem 1rem;
+            }
+            
+            .back-link {
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .admin-form-container {
+                padding: 1.5rem;
+            }
+            
+            .admin-title {
+                font-size: 1.6rem;
+            }
+            
+            .form-input {
+                padding: 0.9rem 1.25rem;
+            }
+            
+            .help-text {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="admin-background">
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element animate-float" style="top: 10%; left: 10%;">🌞</div>
+        <div class="floating-element animate-float-slow" style="top: 20%; right: 20%;">🌙</div>
+        <div class="floating-element animate-float-reverse" style="bottom: 20%; left: 20%;">⭐</div>
+        <div class="floating-element animate-float-slow" style="top: 33%; right: 10%;">☁️</div>
+        <div class="floating-element animate-float" style="bottom: 33%; left: 25%;">🌵</div>
+        <div class="floating-element animate-float-slow" style="top: 50%; left: 10%;">🦎</div>
+        <div class="floating-element animate-float" style="bottom: 10%; right: 25%;">🌴</div>
+    </div>
+
+    <!-- Back Link -->
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        <span>Voltar ao Início</span>
+    </a>
+
+    <!-- Main Container -->
+    <div class="admin-container">
+        <!-- Sidebar (hidden on mobile) -->
+        <div class="sidebar">
+            <div id="weather-card" class="weather-card">
+                <div class="weather-header">
+                    <span class="weather-icon">📍</span>
+                    <select id="city-selector" class="city-selector">
+                        <option value="recife">Recife, PE</option>
+                        <option value="salvador">Salvador, BA</option>
+                        <option value="fortaleza">Fortaleza, CE</option>
+                        <option value="joao-pessoa">João Pessoa, PB</option>
+                        <option value="natal">Natal, RN</option>
+                        <option value="maceio">Maceió, AL</option>
+                        <option value="aracaju">Aracaju, SE</option>
+                        <option value="teresina">Teresina, PI</option>
+                        <option value="sao-luis">São Luís, MA</option>
+                    </select>
+                </div>
+                
+                <div class="weather-time">
+                    <div class="date-time">
+                        <span class="date-icon">📅</span>
+                        <span id="current-date"></span>
+                    </div>
+                    <div class="date-time">
+                        <span class="time-icon">🕒</span>
+                        <span id="current-time"></span>
+                    </div>
+                </div>
+                
+                <div class="weather-info">
+                    <div class="temp-main">
+                        <span id="temperature">28°C</span>
+                        <span class="weather-emoji">☀️</span>
+                    </div>
+                    <div id="weather-desc" class="weather-desc">Ensolarado</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span>Umidade</span>
+                            <span id="humidity">65%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span>Vento</span>
+                            <span id="wind">12 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="financial-cards">
+                <div class="financial-card ibovespa-card">
+                    <div class="card-content">
+                        <div class="card-info">
+                            <div class="card-label">IBOVESPA</div>
+                            <div class="card-value" id="ibovespa-value">127.500</div>
+                            <div class="card-change positive" id="ibovespa-change">
+                                <i class="fas fa-arrow-up"></i> +0.95%
+                            </div>
+                        </div>
+                        <div class="card-icon">📊</div>
+                    </div>
+                </div>
+                
+                <div class="financial-card currency-card">
+                    <div class="card-content">
+                        <div class="card-info">
+                            <div class="card-label">USD/BRL</div>
+                            <div class="card-value" id="usd-value">R$ 5,18</div>
+                            <div class="card-change positive" id="usd-change">
+                                <i class="fas fa-arrow-up"></i> +0.05
+                            </div>
+                        </div>
+                        <div class="card-icon">💵</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Form -->
+        <div class="admin-form-container">
+            <h2 class="admin-title">ACESSO ADMINISTRATIVO</h2>
+            
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        id="admin-email" 
+                        class="form-input email-input" 
+                        placeholder="Email cadastrado"
+                        required
+                    />
+                </div>
+                
+                <div class="form-group password-group">
+                    <input 
+                        type="password" 
+                        id="admin-password" 
+                        class="form-input password-input" 
+                        placeholder="Senha"
+                        required
+                    />
+                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> ACESSAR
+                </button>
+            </form>
+            
+            <div class="help-text">
+                <p>Credenciais de teste para demonstração:</p>
+                <p><strong>Email:</strong> admin@oxente.com</p>
+                <p><strong>Senha:</strong> oxente123</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <script>
+        // Password Toggle Functionality
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('admin-password');
+            const toggleButton = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.classList.remove('fa-eye');
+                toggleButton.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.classList.remove('fa-eye-slash');
+                toggleButton.classList.add('fa-eye');
+            }
+        }
+        
+        // Handle Admin Login
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            // Simple validation for demo purposes
+            if (email === 'admin@oxente.com' && password === 'oxente123') {
+                alert('Login bem-sucedido! Redirecionando para o painel...');
+                // window.location.href = 'admin-dashboard.html';
+            } else {
+                alert('Credenciais inválidas. Por favor, tente novamente.');
+            }
+        }
+        
+        // Update Date and Time
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format date (e.g., "Quarta, 26 Jun 2023")
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('pt-BR', options);
+            
+            // Format time (e.g., "14:30:45")
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('pt-BR');
+        }
+        
+        // Update weather info based on selected city
+        function updateWeatherInfo() {
+            const citySelector = document.getElementById('city-selector');
+            const selectedCity = citySelector.value;
+            
+            // Mock data for different cities
+            const weatherData = {
+                recife: { temp: '28°C', desc: 'Ensolarado', humidity: '65%', wind: '12 km/h', emoji: '☀️' },
+                salvador: { temp: '26°C', desc: 'Parcialmente nublado', humidity: '70%', wind: '15 km/h', emoji: '⛅' },
+                fortaleza: { temp: '30°C', desc: 'Ensolarado', humidity: '60%', wind: '18 km/h', emoji: '☀️' },
+                'joao-pessoa': { temp: '27°C', desc: 'Poucas nuvens', humidity: '68%', wind: '10 km/h', emoji: '🌤️' },
+                natal: { temp: '29°C', desc: 'Ensolarado', humidity: '62%', wind: '14 km/h', emoji: '☀️' },
+                maceio: { temp: '27°C', desc: 'Parcialmente nublado', humidity: '72%', wind: '11 km/h', emoji: '⛅' },
+                aracaju: { temp: '28°C', desc: 'Poucas nuvens', humidity: '67%', wind: '13 km/h', emoji: '🌤️' },
+                teresina: { temp: '32°C', desc: 'Sol com algumas nuvens', humidity: '55%', wind: '16 km/h', emoji: '🌤️' },
+                'sao-luis': { temp: '29°C', desc: 'Parcialmente nublado', humidity: '75%', wind: '20 km/h', emoji: '⛅' }
+            };
+            
+            const data = weatherData[selectedCity];
+            
+            document.getElementById('temperature').textContent = data.temp;
+            document.getElementById('weather-desc').textContent = data.desc;
+            document.getElementById('humidity').textContent = data.humidity;
+            document.getElementById('wind').textContent = data.wind;
+            document.querySelector('.weather-emoji').textContent = data.emoji;
+        }
+        
+        // Update financial data
+        function updateFinancialData() {
+            // Mock data - in a real app, this would come from an API
+            const ibovespaChange = Math.random() > 0.5 ? 'positive' : 'negative';
+            const usdChange = Math.random() > 0.5 ? 'positive' : 'negative';
+            
+            const ibovespaValue = (127500 + (Math.random() * 2000 - 1000)).toFixed(3);
+            const usdValue = (5.18 + (Math.random() * 0.2 - 0.1)).toFixed(2);
+            
+            const ibovespaChangeValue = (Math.random() * 2).toFixed(2);
+            const usdChangeValue = (Math.random() * 0.1).toFixed(2);
+            
+            document.getElementById('ibovespa-value').textContent = ibovespaValue;
+            document.getElementById('usd-value').textContent = `R$ ${usdValue}`;
+            
+            const ibovespaChangeElement = document.getElementById('ibovespa-change');
+            const usdChangeElement = document.getElementById('usd-change');
+            
+            if (ibovespaChange === 'positive') {
+                ibovespaChangeElement.innerHTML = `<i class="fas fa-arrow-up"></i> +${ibovespaChangeValue}%`;
+                ibovespaChangeElement.className = 'card-change positive';
+            } else {
+                ibovespaChangeElement.innerHTML = `<i class="fas fa-arrow-down"></i> -${ibovespaChangeValue}%`;
+                ibovespaChangeElement.className = 'card-change negative';
+            }
+            
+            if (usdChange === 'positive') {
+                usdChangeElement.innerHTML = `<i class="fas fa-arrow-up"></i> +${usdChangeValue}`;
+                usdChangeElement.className = 'card-change positive';
+            } else {
+                usdChangeElement.innerHTML = `<i class="fas fa-arrow-down"></i> -${usdChangeValue}`;
+                usdChangeElement.className = 'card-change negative';
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDateTime();
+            updateWeatherInfo();
+            updateFinancialData();
+            
+            // Update time every second
+            setInterval(updateDateTime, 1000);
+            
+            // Update weather when city changes
+            document.getElementById('city-selector').addEventListener('change', updateWeatherInfo);
+            
+            // Update financial data periodically
+            setInterval(updateFinancialData, 30000);
+            
+            // Hide sidebar on mobile
+            if (window.innerWidth <= 992) {
+                document.querySelector('.sidebar').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

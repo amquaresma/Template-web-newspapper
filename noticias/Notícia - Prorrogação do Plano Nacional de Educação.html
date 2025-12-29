@@ -1,0 +1,699 @@
+<html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prorrogação do Plano Nacional de Educação reforça compromissos com a educação no Nordeste - Oxente News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, var(--bege-claro) 100%);
+            line-height: 1.6;
+            color: var(--marrom-escuro);
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--laranja-queimado);
+        }
+        
+        .header-top {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .date-time-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-item {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: var(--laranja-queimado);
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--bege-claro);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(191, 119, 22, 0.2);
+        }
+        
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--laranja-queimado);
+        }
+        
+        .breadcrumb-separator {
+            color: var(--marrom-avermelhado);
+            margin: 0 0.5rem;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        /* Article */
+        .article-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-header {
+            padding: 2rem 2rem 1rem;
+        }
+        
+        .article-category {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .article-subtitle {
+            font-size: 1.2rem;
+            color: var(--marrom-avermelhado);
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--bege-claro);
+            border-bottom: 1px solid var(--bege-claro);
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--marrom-avermelhado);
+        }
+        
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+        }
+        
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://www.cristianoteixeira.com.br/wp-content/uploads/2023/09/escola.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+        }
+        
+        .image-caption {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .image-credit {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        /* Article Content */
+        .article-content {
+            padding: 0 2rem 2rem;
+        }
+        
+        .article-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--marrom-escuro);
+        }
+        
+        .article-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin: 2rem 0 1rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--bege-claro), rgba(255, 222, 178, 0.5));
+            border-left: 4px solid var(--laranja-queimado);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            font-style: italic;
+        }
+        
+        .quote {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        /* Gallery */
+        .gallery {
+            margin: 2rem 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Social Share */
+        .social-share {
+            background: var(--bege-claro);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .share-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--marrom-escuro);
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.linkedin { background: #0077b5; }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 1.5rem;
+        }
+        
+        .related-article {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--bege-claro);
+        }
+        
+        .related-article:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .related-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .related-content h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--marrom-escuro);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+        
+        .related-date {
+            font-size: 0.8rem;
+            color: var(--marrom-avermelhado);
+        }
+        
+        /* Weather Widget */
+        .weather-widget {
+            background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-avermelhado));
+            color: white;
+        }
+        
+        .weather-info {
+            text-align: center;
+        }
+        
+        .weather-temp {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+        
+        .weather-desc {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        
+
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 568px) {
+            .article-header,
+            .article-content {
+                padding: 1.5rem;
+            }
+            
+            .article-title {
+                font-size: 1.5rem;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            .share-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="date-time-header">
+                    <span id="current-date-header">quarta-feira, 25 de junho de 2025</span>
+                    <span>•</span>
+                    <span id="current-time-header">14:30</span>
+                    <span>•</span>
+                    <span>Horário de Brasília</span>
+                </div>
+                <div>
+                    <span>Bitcoin: $<span class="bitcoin-price">107,923</span> <span class="bitcoin-change">+2.75%</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <a href="index.html" class="logo">Oxente News</a>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-item">🏠 Home</a>
+                <a href="noticias.html" class="nav-item active">📰 Notícias</a>
+                <a href="entertainment.html" class="nav-item">🎵 Entretenimento</a>
+                <a href="costumes.html" class="nav-item">🎭 Costumes</a>
+                <a href="cotacoes.html" class="nav-item">📈 Cotações</a>
+                <a href="admin.html" class="nav-item">⚙️ Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="home.html">Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="noticias.html">Notícias</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="#">Cultura</a>
+            <span class="breadcrumb-separator">›</span>
+            <span>Festival de Inverno de Garanhuns 2025</span>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Article -->
+        <article class="article-container">
+            <div class="article-header">
+                <div class="article-category">Política</div>
+                <h1 class="article-title">Prorrogação do Plano Nacional de Educação reforça compromissos com a educação no Nordeste</h1>
+                <p class="article-subtitle">Congresso estende vigência do PNE e permite novo fôlego para estados e municípios enfrentarem desafios históricos em infraestrutura e acesso à educação infantil</p>
+                
+                <div class="article-meta">
+                    <div class="author-info">
+                        <div class="author-avatar">JQ</div>
+                        <div>
+                            <div class="author-name">João Queiroz</div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                24 de junho de 2025
+                            </div>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        Leitura de 8 min
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Brasília, DF
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-image">
+                <div class="image-overlay">
+                    <div class="image-caption">Escola pública em reforma no interior da Paraíba, beneficiada por linha de financiamento federal</div>
+                    <div class="image-credit">Foto: Governo da Paraíba / Divulgação</div>
+                </div>
+            </div>
+
+            <div class="article-content">
+                <div class="article-text">
+                    <p>Em meio aos esforços para enfrentar os desafios da educação pública brasileira, o Congresso Nacional aprovou, no início de 2025, a prorrogação do Plano Nacional de Educação (PNE) até dezembro deste ano. A medida foi recebida com alívio e otimismo por gestores estaduais do Nordeste, que têm enfrentado dificuldades para cumprir metas de acesso à educação infantil e melhorias na infraestrutura das escolas.</p>
+
+                    <p>Criado em 2014 com metas ambiciosas para serem alcançadas até 2024, o PNE previa avanços como a universalização da educação básica, o aumento do investimento público em educação para 7% do PIB e a valorização dos profissionais da área. No entanto, desigualdades regionais, crises fiscais e a pandemia acabaram retardando muitos desses objetivos, especialmente nos estados do Norte e Nordeste.</p>
+
+                    <div class="highlight-box">
+                        <p>“A prorrogação nos dá tempo para reorganizar as prioridades, ajustar os planos locais e aplicar os recursos com mais foco. Sem essa extensão, muitas metas ficariam apenas no papel.”
+— Marília Lopes, secretária de Educação do Maranhão</p>
+                    </div>
+
+                    <h3>Investimentos federais e novas linhas de crédito</h3>
+
+                    <p>Para acompanhar a decisão do Congresso, o Ministério da Educação (MEC) anunciou novas linhas de financiamento voltadas especialmente para estados com menor índice de cumprimento das metas. Os recursos serão destinados à construção e reforma de escolas, instalação de laboratórios, acessibilidade nas unidades escolares e ampliação de creches públicas — itens considerados essenciais para a efetivação do plano.</p>
+
+                    <div class="gallery">
+                        <h3>Galeria de Imagens</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item" style="background-image: url('https://paraiba.pb.gov.br/noticias/governo-da-paraiba-investe-mais-de-r-360-milhoes-em-reformas-e-ampliacao-de-100-escolas-estaduais-neste-ano/whatsapp-image-2023-09-21-at-16-33-07-1.jpeg/@@images/bee78b05-ce98-4a39-a094-b5b9905852f9.jpeg')"></div>
+                            <div class="gallery-item" style="background-image: url('https://suplan.pb.gov.br/noticias/governo-da-paraiba-esta-construindo-reformando-e-ampliando-55-escolas-em-2021/ObrasEducao.jpeg/@@images/8653a12c-8de2-4242-b9c0-db29dac47c1d.jpeg')"></div>
+                            <div class="gallery-item" style="background-image: url('https://paraiba.pb.gov.br/noticias/governo-da-paraiba-investe-mais-de-r-360-milhoes-em-reformas-e-ampliacao-de-100-escolas-estaduais-neste-ano/whatsapp-image-2023-09-21-at-16-33-08.jpeg/@@images/3edb4a7f-e6f3-46de-97e4-ab800567e2d7.jpeg')"></div>
+                        </div>
+                    </div>
+
+                    <p>Segundo o MEC, pelo menos R$ 1,8 bilhão já está reservado para a execução dessas ações até o fim de 2025. Estados como Pernambuco, Piauí, Alagoas e Sergipe estão entre os prioritários na liberação dos recursos, com foco em regiões periféricas e do semiárido.</p>
+
+                    <div class="quote">
+                        <div class="quote-text">“A educação é prioridade nacional. A continuidade do PNE e o apoio técnico-financeiro aos estados mostram o compromisso com a equidade e a qualidade do ensino público.”</div>
+                        <div class="quote-author">— Renato Simões, diretor de políticas educacionais do MEC</div>
+                    </div>
+
+                    <h3>Desafios persistem, mas cenário é promissor</h3>
+
+                    <p>Apesar da prorrogação, muitos dos 20 objetivos e 254 metas intermediárias do PNE ainda estão longe de serem atingidos. Dados do INEP mostram que menos de 40% das metas foram cumpridas integralmente até 2024. A esperança agora é que, com planejamento mais estratégico e continuidade de políticas públicas, os estados consigam avançar de forma mais efetiva.</p>
+
+                    <p>Especialistas defendem que a prorrogação deve vir acompanhada de transparência na aplicação dos recursos e maior participação da sociedade civil, para que o plano não se torne apenas um documento simbólico.</p>
+
+                </div>
+        </div></article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Related Articles Widget -->
+            <div class="widget">
+                <h3 class="widget-title">Notícias Relacionadas</h3>
+                <div class="related-article">
+                    <div class="related-image">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="related-content">
+                        <h4>Bumba Meu Boi do Maranhão é reconhecido pela UNESCO</h4>
+                        <div class="related-date">23 de junho de 2025</div>
+                    </div>
+                </div>
+                <div class="related-article">
+                    <div class="related-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="related-content">
+                        <h4>Turismo no Nordeste bate recorde histórico em 2025</h4>
+                        <div class="related-date">24 de junho de 2025</div>
+                    </div>
+                </div>
+                <div class="related-article">
+                    <div class="related-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="related-content">
+                        <h4>Feira de São Cristóvão promove festival gastronômico</h4>
+                        <div class="related-date">21 de junho de 2025</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: var(--marrom-escuro); color: white; padding: 2rem 0; margin-top: 4rem;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 1rem;">
+            <p style="margin-bottom: 1rem;">© 2025 Oxente News - Todos os direitos reservados</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Desenvolvido com ❤️ para o Nordeste brasileiro</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body></html>

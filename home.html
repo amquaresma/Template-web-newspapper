@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Oxente News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bege-claro: #FFDEB2;
+            --marrom-escuro: #54350B;
+            --laranja-queimado: #BF7716;
+            --amarelo-ocre: #DFA659;
+            --marrom-avermelhado: #773E2A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, var(--bege-claro) 100%);
+            line-height: 1.6;
+            color: var(--marrom-escuro);
+        }
+        
+        /* Header com barra de pesquisa melhorada */
+        .header {
+            background: white;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--laranja-queimado);
+        }
+        
+        .header-top {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .date-time-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .financial-ticker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--marrom-escuro);
+            text-decoration: none;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            background: white;
+            border: 2px solid var(--bege-claro);
+            border-radius: 25px;
+            padding: 0.75rem 3rem 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            width: 300px;
+            transition: all 0.3s ease;
+            color: var(--marrom-escuro);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--laranja-queimado);
+            box-shadow: 0 0 0 3px rgba(191, 119, 22, 0.1);
+            width: 350px;
+        }
+        
+        .search-input::placeholder {
+            color: var(--marrom-avermelhado);
+            opacity: 0.7;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            background: var(--laranja-queimado);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .search-btn:hover {
+            background: var(--marrom-avermelhado);
+            transform: scale(1.05);
+        }
+        
+        .language-selector {
+            background: var(--bege-claro);
+            border: 1px solid var(--laranja-queimado);
+            border-radius: 8px;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--marrom-escuro);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector:hover {
+            background: var(--laranja-queimado);
+            color: white;
+        }
+        
+        .navigation {
+            background: var(--marrom-escuro);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: var(--laranja-queimado);
+            transform: translateY(-2px);
+        }
+        
+        /* Main container otimizado */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2rem;
+            min-height: calc(100vh - 180px);
+        }
+        
+        /* Seção de notícias expandida */
+        .news-section {
+            display: grid;
+            gap: 1.5rem;
+            min-height: 600px;
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--bege-claro);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--marrom-escuro);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+            border-radius: 2px;
+        }
+        
+        .view-all-btn {
+            background: var(--laranja-queimado);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .view-all-btn:hover {
+            background: var(--marrom-avermelhado);
+            transform: translateY(-2px);
+        }
+        
+        /* Grid de notícias responsivo */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            min-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: fit-content;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+        
+        .news-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            min-height: 300px;
+        }
+        
+        .news-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--laranja-queimado), var(--amarelo-ocre));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card.featured .news-image {
+            height: auto;
+            min-height: 250px;
+        }
+        
+        .news-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .news-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            line-height: 1.3;
+            margin: 0;
+        }
+        
+        .news-card.featured .news-title {
+            font-size: 1.8rem;
+        }
+        
+        .news-excerpt {
+            color: var(--marrom-avermelhado);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--marrom-avermelhado);
+            border-top: 1px solid var(--bege-claro);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+        
+        .author {
+            font-weight: 600;
+        }
+        
+        .date {
+            opacity: 0.8;
+        }
+        
+        /* Sidebar otimizada */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+        
+        /* Cards da sidebar */
+        .weather-card, .music-card, .financial-cards {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .weather-card:hover, .music-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Weather card */
+        .weather-card {
+            background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-avermelhado));
+            color: white;
+        }
+        
+        .weather-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-icon {
+            font-size: 1.2rem;
+        }
+        
+        .city-selector {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .city-selector option {
+            background: var(--marrom-escuro);
+            color: white;
+        }
+        
+        .weather-time {
+            margin-bottom: 1rem;
+        }
+        
+        .date-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .weather-info {
+            text-align: center;
+        }
+        
+        .temp-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .temp-main span:first-child {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .weather-emoji {
+            font-size: 2rem;
+        }
+        
+        .weather-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .weather-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .weather-detail span:first-child {
+            opacity: 0.75;
+        }
+        
+        .weather-detail span:last-child {
+            font-weight: 600;
+        }
+        
+        /* Music player com Spotify */
+        .music-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .music-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+        }
+        
+        .spotify-container {
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .current-track {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bege-claro);
+            border-radius: 12px;
+        }
+        
+        .track-title {
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.25rem;
+        }
+        
+        .track-artist {
+            color: var(--marrom-avermelhado);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .track-description {
+            font-size: 0.8rem;
+            color: var(--marrom-avermelhado);
+            font-style: italic;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .control-btn {
+            background: var(--laranja-queimado);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        
+        .control-btn:hover {
+            background: var(--marrom-avermelhado);
+            transform: scale(1.1);
+        }
+        
+        .control-btn#play-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+        }
+        
+        .spotify-credit {
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        /* Financial cards */
+        .financial-cards {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .financial-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .financial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--laranja-queimado), var(--amarelo-ocre));
+        }
+        
+        .financial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .financial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .financial-name {
+            font-weight: 600;
+            color: var(--marrom-escuro);
+            font-size: 0.9rem;
+        }
+        
+        .financial-icon {
+            font-size: 1.2rem;
+        }
+        
+        .financial-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.5rem;
+        }
+        
+        .financial-change {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+        }
+        
+        .financial-change.positive {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .financial-change.negative {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--marrom-escuro);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--amarelo-ocre);
+        }
+        
+        .footer-section p, .footer-section li {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--amarelo-ocre);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+        }
+        
+        .footer-credits {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .news-card.featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+            
+            .header-top-content {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .search-input {
+                width: 250px;
+            }
+            
+            .search-input:focus {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="date-time-info">
+                    <span id="current-date">quarta-feira, 25 de junho de 2025</span>
+                    <span>•</span>
+                    <span id="current-time">14:30</span>
+                    <span>Brasília</span>
+                </div>
+                <div class="financial-ticker">
+                    <span>Bitcoin: <span class="bitcoin-price">$107,923</span> <span class="bitcoin-change">+2.75%</span></span>
+                    <span>•</span>
+                    <span>USD/BRL: <span class="usd-price">R$ 5.45</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <a href="index.html" class="logo">Oxente News</a>
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Buscar notícias, eventos, cultura...">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+                <select class="language-selector" onchange="changeLanguage(this.value)">
+                    <option value="pt">🇧🇷 PT</option>
+                    <option value="en">🇺🇸 EN</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="home.html" class="nav-item active">🏠 Home</a>
+            <a href="noticias.html" class="nav-item">📰 Notícias</a>
+            <a href="entertainment.html" class="nav-item">🎵 Entretenimento</a>
+            <a href="costumes.html" class="nav-item">🎭 Costumes</a>
+            <a href="cotacoes.html" class="nav-item">📈 Cotações</a>
+            <a href="admin.html" class="nav-item">⚙️ Admin</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="news-header">
+                <h2 class="section-title">📰 Últimas Notícias</h2>
+                <a href="noticias.html" class="view-all-btn">Ver todas</a>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card featured" data-category="politica">
+                    <div class="news-image">
+                        <img src="imagens/prefeito.jpg">
+                        <div class="news-category">Política</div>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Casa do prefeito de Acarape é alvo de assalto durante a noite</h3>
+                        <p class="news-excerpt">
+                            Prefeito Edilberto Bezerra (PSB) tem residência invadida por criminosos na comunidade de Cantagalo, no Interior do Ceará. Polícia investiga o caso.                        </p>
+                        <div class="news-meta">
+                            <span class="author">Redação Oxente News</span>
+                            <a href="noticias/assalto-prefeito-acarape-final.html" class="view-all-btn">Ler Notícia</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="economia">
+                    <div class="news-image">
+                        <img src="imagens/vendas.jpg">
+                        <div class="news-category">Economia</div>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Nordeste lidera crescimento econômico no Brasil com alta de 5,5% no PIB em 2024</h3>
+                        <p class="news-excerpt">Região supera a média nacional com destaque para serviços, turismo e agropecuária; Bahia, Ceará e Piauí são protagonistas da transformação econômica.</p>
+                        <div class="news-meta">
+                            <span class="author">João Queiroz
+                            </span>
+                            </span>
+                            <a href="noticias/Notícia - Crescimento Econômico.html" class="view-all-btn">Ler Notícia</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="Educação">
+                    <div class="news-image">
+                        <img src="imagens/mpce.jpg">
+                        <div class="news-category">Política</div>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Falta de professores na Uece: MPCE dá 45 dias para governador Elmano apresentar plano de ação</h3>
+                        <p class="news-excerpt">Crise afeta mais de 370 disciplinas e preocupa estudantes; Ministério Público cobra providências e proteção aos aprovados em concurso público vigente.</p>
+                        <div class="news-meta">
+                            <span class="author">Maria Arevalo</span>
+                            <a href="noticias/Falra-professores.html" class="view-all-btn">Ler Notícia</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="politica">
+                    <div class="news-image">
+                        <img src="imagens/copa.jpg">
+                        <div class="news-category">Esporte</div>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Copa do Nordeste 2025 aposta em clássicos e projeta recordes de público
+                            </h3>
+                        <p class="news-excerpt">Torneio regional mais querido do país inicia nova edição com formato renovado e foco no intercâmbio cultural entre torcidas nordestinas.</p>
+                        <div class="news-meta">
+                            <span class="author">João V. Queiroz</span>
+                            <a href="noticias/Notícia - Copa do Nordeste.html" class="view-all-btn">Ler Notícia</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="tecnologia">
+                    <div class="news-image">
+                        <img src="imagens/piaui.jpg">
+                        <div class="news-category">Tecnologia</div>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Piauí é pioneiro no ensino de Inteligência Artificial nas escolas públicas</h3>
+                        <p class="news-excerpt">Estado nordestino inova ao incluir disciplina de IA no currículo da educação básica; medida integra formação digital de mais de 300 escolas e atrai atenção internacional.</p>
+                        <div class="news-meta">
+                            <span class="author">João V. Queiroz</span>
+                            <a href="noticias/Notícia - Ensino de IAs.html" class="view-all-btn">Ler Notícia</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="turismo">
+                    <div class="news-image">
+                        <img src="imagens/turistinha.jpg">
+                        <div class="news-category">Turismo</div>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Turismo nordestino bate recorde em 2025</h3>
+                        <p class="news-excerpt">Combinando litoral exuberante, cultura rica e novas rotas no interior, região atrai milhões de turistas e reforça vocação para o turismo sustentável</p>
+                        <div class="news-meta">
+                            <span class="author">João V. Queiroz</span>
+                            <a href="noticias/Nordeste vira foco no turismo.html" class="view-all-btn">Ler Notícia</a>
+                            
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Weather Card -->
+            <div class="weather-card">
+                <div class="weather-header">
+                    <span class="weather-icon">📍</span>
+                    <select id="city-selector" class="city-selector">
+                        <option value="recife">Recife, PE</option>
+                        <option value="salvador">Salvador, BA</option>
+                        <option value="fortaleza">Fortaleza, CE</option>
+                        <option value="joao-pessoa">João Pessoa, PB</option>
+                        <option value="natal">Natal, RN</option>
+                        <option value="maceio">Maceió, AL</option>
+                        <option value="aracaju">Aracaju, SE</option>
+                        <option value="teresina">Teresina, PI</option>
+                        <option value="sao-luis">São Luís, MA</option>
+                    </select>
+                </div>
+                
+                <div class="weather-time">
+                    <div class="date-time">
+                        <span class="date-icon">📅</span>
+                        <span id="current-date-weather">25 de Junho, 2025</span>
+                    </div>
+                    <div class="date-time">
+                        <span class="time-icon">🕐</span>
+                        <span id="current-time-weather">14:30</span>
+                    </div>
+                </div>
+                
+                <div class="weather-info">
+                    <div class="temp-main">
+                        <span id="temperature">28°C</span>
+                        <span class="weather-emoji" id="weather-emoji">☀️</span>
+                    </div>
+                    <div class="weather-desc" id="weather-desc">Ensolarado</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span>Umidade</span>
+                            <span id="humidity">65%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span>Vento</span>
+                            <span id="wind-speed">12 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Player com Spotify -->
+            <div class="music-card">
+                <div class="music-header">
+                    <span>🎵</span>
+                    <h3 class="music-title">Rádio Nordeste</h3>
+                </div>
+                
+                <!-- Spotify Embedded Player -->
+                <div class="spotify-container">
+                     
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2P2noGLEsnUXgdJGRzIenp?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                
+                
+                <div class="spotify-credit">
+                    <small style="color: var(--marrom-avermelhado); font-size: 0.8rem;">
+                        🎧 Powered by Spotify
+                    </small>
+                </div>
+            </div>
+
+            <!-- Financial Cards -->
+            <div class="financial-cards">
+                <div class="financial-card">
+                    <div class="financial-header">
+                        <div class="financial-name">Bitcoin</div>
+                        <div class="financial-icon">₿</div>
+                    </div>
+                    <div class="financial-value bitcoin-price">$107,923</div>
+                    <div class="financial-change bitcoin-change positive">+2.75%</div>
+                </div>
+                
+                <div class="financial-card">
+                    <div class="financial-header">
+                        <div class="financial-name">USD/BRL</div>
+                        <div class="financial-icon">💵</div>
+                    </div>
+                    <div class="financial-value usd-price">R$ 5.4521</div>
+                    <div class="financial-change usd-change negative">-0.12%</div>
+                </div>
+                
+                <div class="financial-card">
+                    <div class="financial-header">
+                        <div class="financial-name">IBOVESPA</div>
+                        <div class="financial-icon">📊</div>
+                    </div>
+                    <div class="financial-value ibov-price">134,567</div>
+                    <div class="financial-change ibov-change positive">+1.23%</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Oxente News</h3>
+                <p>O portal de notícias que celebra a cultura e tradições do Nordeste brasileiro. Sempre conectado com o que acontece na nossa região.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Seções</h3>
+                <ul>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="entertainment.html">Entretenimento</a></li>
+                    <li><a href="costumes.html">Costumes</a></li>
+                    <li><a href="cotacoes.html">Cotações</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Email: contato@oxentenews.com.br</p>
+                <p>Taboão da Serra, São Paulo - Brasil</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Oxente News - Todos os direitos reservados</p>
+            <p class="footer-credits">Desenvolvido por Door Solutions</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
